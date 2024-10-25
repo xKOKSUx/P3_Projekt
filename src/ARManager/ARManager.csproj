@@ -7,4 +7,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Shared\ClassLibrary1\ClassLibrary1.csproj" />
+    <ProjectReference Include="..\Shared\Domain\Domain.csproj" />
+  </ItemGroup>
+
 </Project>
