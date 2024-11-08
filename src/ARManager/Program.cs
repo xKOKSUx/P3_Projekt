@@ -1,9 +1,9 @@
 ﻿using Domain.Entities;
 
 Airport airport = new Airport("USA","Los Angeles","LAX");
+
+//Testowe
 //Plane N607U = new Plane("Boeing 747", "Boeing", "N607U", "12:00", "14:00", "N");
-
-
 //Plane U067= new Plane("Boeing 747", "Boeing", "U067", "12:00", "14:00", "N");
 //Console.WriteLine(airport.country);
 //Console.WriteLine(airport.city);
@@ -28,11 +28,13 @@ string model = Console.ReadLine() ?? "Not Assigned";
 
 string code = planeName;
 
+Console.Write("Enter Date of Departure (DOD): ");
+string dod = Console.ReadLine() ?? "Not Assigned";
+
+
 Console.Write("Enter Date of Arrival (DOA): ");
 string doa = Console.ReadLine() ?? "Not Assigned";
 
-Console.Write("Enter Date of Departure (DOD): ");
-string dod = Console.ReadLine() ?? "Not Assigned";
 
 Console.Write("Enter Heading: ");
 string heading = Console.ReadLine() ?? "Not Assigned";
