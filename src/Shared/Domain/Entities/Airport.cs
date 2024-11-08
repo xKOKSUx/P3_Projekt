@@ -12,12 +12,7 @@
             city = cityName;
             code = codeName;
         }
-        public void DisplayInfo()
-        {
-            Console.WriteLine("Country: " + country);
-            Console.WriteLine("City: " + city);
-            Console.WriteLine("Code: " + code);
-        }
+        
 
 
     }
