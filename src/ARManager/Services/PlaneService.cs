@@ -4,7 +4,7 @@ namespace ARManager.Services
 {
     public class PlaneService
     {
-        public void DisplayInfo(Plane plane)
+        public void DisplayInfoPlane(Plane plane)
         {
             Console.WriteLine("Model: " + plane.Model);
             Console.WriteLine("Manufacturer: " + plane.Manufacturer);
@@ -13,5 +13,20 @@ namespace ARManager.Services
             Console.WriteLine("DOA: " + plane.DOA);
             Console.WriteLine("Heading: " + plane.Heading);
         }
+        //void displayplanes()
+        //{
+        //    Console.WriteLine("Enter the plane ID: ");
+        //    string planeName = Console.ReadLine();
+        //    planeName = planeName.ToUpper();
+        //    if (planes.TryGetValue(planeName, out Plane plane))
+        //    {
+        //        PlaneService planeServices = new PlaneService();
+        //        planeServices.DisplayInfo(plane);
+        //    }
+        //    else
+        //    {
+        //        Console.WriteLine("Plane not found.");
+        //    }
+        //}
     }
 }

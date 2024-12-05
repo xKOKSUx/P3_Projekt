@@ -4,7 +4,7 @@ namespace ARManager.Services
 {
     class AirportService
     {
-        public void DisplayInfo(Airport airport)
+        public void DisplayInfoAirport(Airport airport)
         {
             Console.WriteLine("Country: " + airport.country);
             Console.WriteLine("City: " + airport.city);

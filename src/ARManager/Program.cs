@@ -1,8 +1,11 @@
 ﻿using ARManager.Services;
 using Domain.Entities;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+
 
 Airport airport = new Airport("USA", "Los Angeles", "LAX");
-
+List<Plane> plane= new List<Plane>();
 Dictionary<string, Plane> planes = new Dictionary<string, Plane>();
 
 void createplane()
@@ -12,6 +15,10 @@ void createplane()
     {
         Console.Write("Enter the plane ID: ");
         planeName = Console.ReadLine();
+        if (planeName.Length < 4)
+        {
+            Console.WriteLine("Plane ID must be at least 4 characters long.");
+        }
     }
     while (planeName.Length < 4);
     planeName = planeName.ToUpper();
@@ -37,22 +44,25 @@ void createplane()
     planes[planeName] = newPlane;
 }
 
-void displayplanes()
-{
-    Console.WriteLine("Enter the plane ID: ");
-    string planeName = Console.ReadLine();
-    planeName = planeName.ToUpper();
-    if (planes.TryGetValue(planeName, out Plane plane))
-    {
-        PlaneService planeServices = new PlaneService();
-        planeServices.DisplayInfo(plane);
-    }
-    else
-    {
-        Console.WriteLine("Plane not found.");
-    }
-}
+//void displayplanes()
+//{
+//    Console.WriteLine("Enter the plane ID: ");
+//    string planeName = Console.ReadLine();
+//    planeName = planeName.ToUpper();
+//    if (planes.TryGetValue(planeName, out Plane plane))
+//    {
+//        PlaneService planeServices = new PlaneService();
+//        planeServices.DisplayInfo(plane);
+//    }
+//    else
+//    {
+//        Console.WriteLine("Plane not found.");
+//    }
+//}
 
 createplane();
-createplane();
-displayplanes();
+//createplane();
+const string path = @"C:\Users\Surda\Documents\P3_Projekt\dane.json";
+string json = JsonSerializer.Serialize(planes);
+File.WriteAllText(path, json);
+//PlaneService.DisplayInfoPlane();

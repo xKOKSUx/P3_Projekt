@@ -1,6 +1,6 @@
 ﻿namespace Domain.Entities
 {
-    public class Airport 
+    public class Airport
     {
         public string country { get; set; }
         public string city { get; set; }
@@ -12,8 +12,6 @@
             city = cityName;
             code = codeName;
         }
-        
-
 
     }
 }

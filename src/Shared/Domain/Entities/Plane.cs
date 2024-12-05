@@ -9,7 +9,7 @@
         public string DOD { get; set; }//Date of Departure
         public string Heading { get; set; }
 
-        public Plane(string ModelName,string ManufacturerName,string CodeName,string DODTime,string DOATime,string HeadingDirection)
+        public Plane(string ModelName, string ManufacturerName, string CodeName, string DODTime, string DOATime, string HeadingDirection)
         {
             Model = ModelName;
             Manufacturer = ManufacturerName;
@@ -20,6 +20,6 @@
 
 
         }
-        
+
     }
 }
