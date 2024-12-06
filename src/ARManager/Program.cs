@@ -4,9 +4,24 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 
 
+const string path = @"C:\Users\Surda\Documents\P3_Projekt\Planes.json";
+string jsonR = File.ReadAllText(path);
+if (!File.Exists(path))
+{
+    Console.WriteLine($"Error: File '{path}' not found!");
+    return;
+}
+
+Dictionary<string, Plane> planes = JsonSerializer.Deserialize<Dictionary<string, Plane>>(jsonR);
+
+
+
+
+
+
 Airport airport = new Airport("USA", "Los Angeles", "LAX");
 List<Plane> plane= new List<Plane>();
-Dictionary<string, Plane> planes = new Dictionary<string, Plane>();
+//Dictionary<string, Plane> planes = new Dictionary<string, Plane>();
 
 void createplane()
 {
@@ -61,8 +76,8 @@ void createplane()
 //}
 
 createplane();
-//createplane();
-const string path = @"C:\Users\Surda\Documents\P3_Projekt\dane.json";
+
+
 string json = JsonSerializer.Serialize(planes);
 File.WriteAllText(path, json);
 //PlaneService.DisplayInfoPlane();
