@@ -5,12 +5,9 @@ namespace ARManager.Services
     public class ImportSaveData
     {
         string path = Path.Combine("", @"..\..\..\..\..\Planes.json");
-<<<<<<< HEAD
+
        
-=======
-        //public const string ConfigPath = "config.json";
-        public const string TransactionsPath = "transactions.json";
->>>>>>> 7635da8a363c61bef392b41ce0a4914e9eb02138
+
 
         public void CreateFile()
         {
@@ -23,20 +20,17 @@ namespace ARManager.Services
                 }
                 else
                 {
-<<<<<<< HEAD
-                    Console.WriteLine("Plik planes.json już istnieje.");
-=======
-                    Console.WriteLine("Plik transactions.json już istnieje.");
->>>>>>> 7635da8a363c61bef392b41ce0a4914e9eb02138
+ Console.WriteLine("Plik planes.json już istnieje.");
+
+               
+
                 }
             }
             catch (Exception ex)
             {
-<<<<<<< HEAD
+
                 Console.WriteLine($"Wystąpił błąd podczas tworzenia pliku: {ex.Message}");
-=======
-                Console.WriteLine($"Wystąpił błąd podczas tworzenia plików: {ex.Message}");
->>>>>>> 7635da8a363c61bef392b41ce0a4914e9eb02138
+
             }
         }
 
