@@ -19,7 +19,7 @@ Airport airport = new Airport("USA", "Los Angeles", "LAX");
 List<Plane> plane= new List<Plane>();
 Dictionary<string, Plane> planes = new Dictionary<string, Plane>();
 
-void createplane()
+void CreatePlane()
 {
     string planeName;
     do
@@ -70,8 +70,7 @@ void createplane()
 //        Console.WriteLine("Plane not found.");
 //    }
 //}
-
-createplane();
+CreatePlane();
 
 
 string jsonW = JsonSerializer.Serialize(planes);
