@@ -1,10 +1,7 @@
-﻿using ARManager.Services;
-using Domain.Entities;
-using System.Text.Json;
-using System.Text.Json.Serialization;
+﻿using Domain.Entities;
 
 
-string path = Path.Combine("", @"..\..\..\..\..\Planes.json");
+
 //string jsonR = File.ReadAllText(path);
 //if (!File.Exists(path))
 //{
@@ -16,7 +13,7 @@ string path = Path.Combine("", @"..\..\..\..\..\Planes.json");
 
 
 Airport airport = new Airport("USA", "Los Angeles", "LAX");
-List<Plane> plane= new List<Plane>();
+List<Plane> plane = new List<Plane>();
 Dictionary<string, Plane> planes = new Dictionary<string, Plane>();
 
 void CreatePlane()
@@ -71,8 +68,4 @@ void CreatePlane()
 //    }
 //}
 CreatePlane();
-
-
-string jsonW = JsonSerializer.Serialize(planes);
-File.WriteAllText(path, jsonW);
 //PlaneService.DisplayInfoPlane();
