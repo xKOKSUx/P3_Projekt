@@ -1,20 +1,14 @@
-﻿using Domain.Entities;
+﻿using ARManager.Services;
+using Domain.Entities;
+ImportSaveData importSaveData = new ImportSaveData();
+List<Airport> airport;
+Airport newAirport = new Airport("USA", "Los Angeles", "LAX");
 
 
+List<Plane> planes;
 
-//string jsonR = File.ReadAllText(path);
-//if (!File.Exists(path))
-//{
-//    Console.WriteLine($"Error: File '{path}' not found!");
-//    return;
-//}
+planes = ImportSaveData.ReadFromFile<List<Plane>>();
 
-//Dictionary<string, Plane> planes = JsonSerializer.Deserialize<Dictionary<string, Plane>>(jsonR);
-
-
-Airport airport = new Airport("USA", "Los Angeles", "LAX");
-List<Plane> plane = new List<Plane>();
-Dictionary<string, Plane> planes = new Dictionary<string, Plane>();
 
 void CreatePlane()
 {
@@ -49,23 +43,20 @@ void CreatePlane()
     heading = heading.ToUpper();
 
     Plane newPlane = new Plane(model, manufacturer, code, doa, dod, heading);
-    planes[planeName] = newPlane;
+    planes.Add(newPlane);
+    
 }
 
-//void displayplanes()
-//{
-//    Console.WriteLine("Enter the plane ID: ");
-//    string planeName = Console.ReadLine();
-//    planeName = planeName.ToUpper();
-//    if (planes.TryGetValue(planeName, out Plane plane))
-//    {
-//        PlaneService planeServices = new PlaneService();
-//        planeServices.DisplayInfo(plane);
-//    }
-//    else
-//    {
-//        Console.WriteLine("Plane not found.");
-//    }
-//}
 CreatePlane();
-//PlaneService.DisplayInfoPlane();
+PlaneService planeService = new PlaneService();
+planeService.DisplayInfoPlane(planes.Last());
+
+try
+{
+    importSaveData.SaveToFile(planes);
+    Console.WriteLine("Data saved successfully!");
+}
+catch (Exception ex)
+{
+    Console.WriteLine($"Error saving plane data: {ex.Message}");
+}

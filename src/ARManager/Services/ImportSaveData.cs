@@ -1,12 +1,14 @@
-﻿using System.Text.Json;
-
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Text.Json;
 namespace ARManager.Services
 {
     public class ImportSaveData
     {
         string path = Path.Combine("", @"..\..\..\..\..\Planes.json");
 
-       
+
 
 
         public void CreateFile()
@@ -20,9 +22,9 @@ namespace ARManager.Services
                 }
                 else
                 {
- Console.WriteLine("Plik planes.json już istnieje.");
+                    Console.WriteLine("Plik planes.json już istnieje.");
 
-               
+
 
                 }
             }
@@ -34,17 +36,48 @@ namespace ARManager.Services
             }
         }
 
-        public void SaveToFile(string path, object data)
+        public void SaveToFile(object data)
         {
+            string path = Path.Combine("", @"..\..\..\..\..\Planes.json");
             string jsonData = JsonSerializer.Serialize(data, new JsonSerializerOptions { WriteIndented = true });
             File.WriteAllText(path, jsonData);
         }
 
-        public T? ReadFromFile<T>(string path)
+        
+        public static T? ReadFromFile<T>()
         {
+            string path = Path.Combine("", @"..\..\..\..\..\Planes.json");
+            try
+            {
+                if (!File.Exists(path))
+                {
+                    Console.WriteLine("Plik nie istnieje.");
+                    return default;
+                }
 
-            string jsonData = File.ReadAllText(path);
-            return JsonSerializer.Deserialize<T>(jsonData);
+                string jsonData = File.ReadAllText(path);
+                if (string.IsNullOrEmpty(jsonData))
+                {
+                    Console.WriteLine("Plik jest pusty.");
+                    return default;
+                }
+
+                return JsonSerializer.Deserialize<T>(jsonData, new JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = true,
+                    IncludeFields = true
+                });
+            }
+            catch (JsonException ex)
+            {
+                Console.WriteLine($"Błąd podczas deserializacji JSON: {ex.Message}");
+                return default;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Wystąpił błąd podczas odczytu pliku: {ex.Message}");
+                return default;
+            }
         }
 
         public void DeleteFile()

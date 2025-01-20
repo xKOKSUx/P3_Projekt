@@ -13,20 +13,7 @@ namespace ARManager.Services
             Console.WriteLine("DOA: " + plane.DOA);
             Console.WriteLine("Heading: " + plane.Heading);
         }
-        //void Displayplane()
-        //{
-        //    Console.WriteLine("Enter the plane ID: ");
-        //    string planeName = Console.ReadLine();
-        //    planeName = planeName.ToUpper();
-        //    if (planes.TryGetValue(planeName, out Plane plane))
-        //    {
-        //        PlaneService planeServices = new PlaneService();
-        //        planeServices.DisplayInfo(plane);
-        //    }
-        //    else
-        //    {
-        //        Console.WriteLine("Plane not found.");
-        //    }
-        //}
+        
     }
+
 }
