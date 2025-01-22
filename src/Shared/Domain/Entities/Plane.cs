@@ -1,7 +1,9 @@
-﻿namespace Domain.Entities
+﻿
+namespace Domain.Entities
 {
     public class Plane
     {
+        
         public string Model { get; set; }
         public string Manufacturer { get; set; }
         public string Code { get; set; }

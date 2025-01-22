@@ -1,11 +1,13 @@
 ﻿using ARManager.Services;
 using Domain.Entities;
+using System;
+PlaneService planeService = new PlaneService();
 ImportSaveData importSaveData = new ImportSaveData();
 List<Airport> airport;
 Airport newAirport = new Airport("USA", "Los Angeles", "LAX");
 
 
-List<Plane> planes;
+List<Plane> planes = new List<Plane>();
 
 planes = ImportSaveData.ReadFromFile<List<Plane>>();
 
@@ -46,17 +48,58 @@ void CreatePlane()
     planes.Add(newPlane);
     
 }
-
-CreatePlane();
-PlaneService planeService = new PlaneService();
-planeService.DisplayInfoPlane(planes.Last());
-
-try
+bool running = true;
+while (running)
 {
-    importSaveData.SaveToFile(planes);
-    Console.WriteLine("Data saved successfully!");
-}
-catch (Exception ex)
-{
-    Console.WriteLine($"Error saving plane data: {ex.Message}");
+    Console.Clear();
+    Console.WriteLine("=== Aviation Resource Manager ===");
+    Console.WriteLine("1. Add Plane");
+    Console.WriteLine("2. Remove Plane");
+    Console.WriteLine("3. Display planes");
+    Console.WriteLine("4. Add Airport");
+    Console.WriteLine("5. Remove Airport");
+    Console.WriteLine("6. Exit");
+    Console.Write("\nSelect an option: ");
+
+    string choice = Console.ReadLine();
+
+    switch (choice)
+    {
+        case "1":
+            CreatePlane();
+            
+            break;
+        //case "2":
+        //    RemovePlane();
+            
+        //    break;
+        case "3":
+            if (planes.Count == 0)
+            {
+                Console.WriteLine("No planes to display.");
+            }
+            else
+            {
+                
+                foreach (var plane in planes)
+                {
+                    planeService.DisplayInfoPlane(plane);
+                    Console.WriteLine();
+                }
+            }
+            Console.WriteLine("\nPress any key to continue...");
+            Console.ReadKey();
+            break;
+        //case "4":
+        //    RemoveAirport();
+        //    break;
+        case "6":
+            importSaveData.SaveToFile(planes);
+            running = false;
+            break;
+        default:
+            Console.WriteLine("Invalid option. Press any key to continue...");
+            Console.ReadKey();
+            break;
+    }
 }
