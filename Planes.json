@@ -1,1 +1,10 @@
-null
+[
+  {
+    "Model": "Boeing 747",
+    "Manufacturer": "Boeing",
+    "Code": "B747",
+    "DOA": "2021-10-11",
+    "DOD": "2021-10-10",
+    "Heading": "LAX"
+  }
+]

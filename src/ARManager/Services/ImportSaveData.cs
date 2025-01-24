@@ -36,9 +36,9 @@ namespace ARManager.Services
             }
         }
 
-        public void SaveToFile(object data)
+        public void SaveToFile(object data,string _path)
         {
-            string path = Path.Combine("", @"..\..\..\..\..\Planes.json");
+            string path = Path.Combine("", _path);
             string jsonData = JsonSerializer.Serialize(data, new JsonSerializerOptions { WriteIndented = true });
             File.WriteAllText(path, jsonData);
         }

@@ -1,58 +1,18 @@
 ﻿using ARManager.Services;
 using Domain.Entities;
-using System;
+
 PlaneService planeService = new PlaneService();
 ImportSaveData importSaveData = new ImportSaveData();
+List<Plane> planes = new List<Plane>();
+List<Airport> airports = new List<Airport>();
 CreatePlane createPlane = new CreatePlane();
 AirportService airportService = new AirportService();
-
+CreateAirport createAirport = new CreateAirport();
 Airport newAirport = new Airport("USA", "Los Angeles", "LAX");
 
 
-List<Plane> planes = new List<Plane>();
+planes.Add(new Plane("Boeing 747", "Boeing", "B747", "2021-10-10", "2021-10-11", "LAX"));
 
-
-planes = ImportSaveData.ReadFromFile<List<Plane>>();
-
-
-//void CreatePlane()
-//{
-//    List<Plane> planes = new List<Plane>();
-
-//    string planeName;
-//    do
-//    {
-//        Console.Write("Enter the plane ID: ");
-//        planeName = Console.ReadLine();
-//        if (planeName.Length < 4)
-//        {
-//            Console.WriteLine("Plane ID must be at least 4 characters long.");
-//        }
-//    }
-//    while (planeName.Length < 4);
-//    planeName = planeName.ToUpper();
-
-//    Console.Write("Enter Manufacturer: ");
-//    string manufacturer = Console.ReadLine() ?? "Not Assigned";
-
-//    Console.Write("Enter Model: ");
-//    string model = Console.ReadLine() ?? "Not Assigned";
-
-//    string code = planeName;
-//    Console.Write("Enter Date of Departure (DOD): ");
-//    string dod = Console.ReadLine() ?? "Not Assigned";
-
-//    Console.Write("Enter Date of Arrival (DOA): ");
-//    string doa = Console.ReadLine() ?? "Not Assigned";
-
-//    Console.Write("Enter Heading(Airport code): ");
-//    string heading = Console.ReadLine() ?? "Not Assigned";
-//    heading = heading.ToUpper();
-
-//    Plane newPlane = new Plane(model, manufacturer, code, doa, dod, heading);
-//    planes.Add(newPlane);
-    
-//}
 bool running = true;
 while (running)
 {
@@ -61,8 +21,8 @@ while (running)
     Console.WriteLine("1. Add Plane");
     Console.WriteLine("2. Remove Plane(WIP)");
     Console.WriteLine("3. Display planes");
-    Console.WriteLine("4. Add Airport(WIP)");
-    Console.WriteLine("5. Display Airport(WIP)");
+    Console.WriteLine("4. Add Airport");
+    Console.WriteLine("5. Display Airport");
     Console.WriteLine("6. Exit");
     Console.Write("\nSelect an option: ");
 
@@ -71,12 +31,12 @@ while (running)
     switch (choice)
     {
         case "1":
-            createPlane.CreatePlan();
+            createPlane.CreatePlan(planes);
 
             break;
         //case "2":
         //    RemovePlane();
-            
+
         //    break;
         case "3":
             if (planes.Count == 0)
@@ -92,19 +52,38 @@ while (running)
                     Console.WriteLine();
                 }
             }
-            
-            
+            Console.WriteLine("Press any key to continue...");
+            Console.ReadKey();
+            break;
+        case "5":
+
+            if (airports.Count == 0)
+            {
+                Console.WriteLine("No airports to display.");
+            }
+            else
+            {
+
+                foreach (var airport in airports)
+                {
+                    airportService.DisplayInfoAirport(airport);
+                    Console.WriteLine();
+                }
+            }
+            Console.WriteLine("Press any key to continue...");
+            Console.ReadKey();
             break;
         case "4":
-            airportService.DisplayInfoAirport(newAirport);
+            createAirport.CreateAirpor(airports);
             break;
         case "6":
-            importSaveData.SaveToFile(planes);
+            importSaveData.SaveToFile(planes, @"..\..\..\..\..\Planes.json");
+            importSaveData.SaveToFile(airports, @"..\..\..\..\..\Airports.json");
             running = false;
             break;
         default:
             Console.WriteLine("Invalid option. Press any key to continue...");
-            
+
             break;
     }
 }

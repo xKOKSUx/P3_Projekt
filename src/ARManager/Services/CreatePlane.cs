@@ -1,17 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Domain.Entities;
+﻿using Domain.Entities;
 namespace ARManager.Services
 {
     public class CreatePlane
-    {
-        public void CreatePlan()
+    {       
+        public void CreatePlan(List<Plane> planes)
         {
-            List<Plane> planes = new List<Plane>();
-
+            
             string planeName;
             do
             {
@@ -42,8 +36,8 @@ namespace ARManager.Services
             string heading = Console.ReadLine() ?? "Not Assigned";
             heading = heading.ToUpper();
 
-            Plane newPlane = new Plane(model, manufacturer, code, doa, dod, heading);
-            planes.Add(newPlane);
+
+            planes.Add(new Plane(model, manufacturer, code, doa, dod, heading));
 
         }
     }
